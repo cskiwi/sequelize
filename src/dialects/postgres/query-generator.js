@@ -115,6 +115,12 @@ class PostgresQueryGenerator extends AbstractQueryGenerator {
 
   dropTableQuery(tableName, options) {
     options = options || {};
+    
+    tableName = {
+      tableName,
+      schema: options.schema
+    };
+
     return `DROP TABLE IF EXISTS ${this.quoteTable(tableName)}${options.cascade ? ' CASCADE' : ''};`;
   }
 
